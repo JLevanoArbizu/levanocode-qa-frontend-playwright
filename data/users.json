@@ -1,0 +1,18 @@
+{
+  "standard_user": {
+    "username": "standard_user",
+    "password": "secret_sauce"
+  },
+  "locked_out_user": {
+    "username": "locked_out_user",
+    "password": "secret_sauce"
+  },
+  "usuario_falso": {
+    "username": "usuario_que_no_existe",
+    "password": "clave_cualquiera"
+  },
+  "usuario_sin_pass": {
+    "username": "standard_user",
+    "password": ""
+  }
+}

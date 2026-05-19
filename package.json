@@ -1,0 +1,25 @@
+{
+  "name": "playwright-cucumber-saucedemo",
+  "version": "1.0.0",
+  "description": "Reto de automatización Front-End bancario utilizando Playwright con Cucumber y TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js test",
+    "test:html": "cucumber-js test --format html:reports/cucumber-report.html"
+  },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "typescript",
+    "sdet"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.12.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
