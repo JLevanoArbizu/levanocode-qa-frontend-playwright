@@ -1,0 +1,4 @@
+usuario,mensaje_esperado
+locked_out_user,Epic sadface: Sorry, this user has been locked out.
+usuario_falso,Epic sadface: Username and password do not match any user in this service
+usuario_sin_pass,Epic sadface: Password is required

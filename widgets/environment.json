@@ -1,0 +1,1 @@
+[{"values":["Chromium"],"name":"Browser"},{"values":["QA"],"name":"Environment"},{"values":["Playwright + CucumberJS"],"name":"Framework"},{"values":["linux"],"name":"Platform"},{"values":["v20.20.2"],"name":"Node_Version"}]
