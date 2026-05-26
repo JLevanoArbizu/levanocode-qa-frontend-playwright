@@ -25,6 +25,8 @@ Then('el producto seleccionado debe estar en el carrito', async function (this: 
   expect(isInCart).toBeTruthy();
 });
 
+
+
 When('procedo al checkout', async function (this: CustomWorld) {
   await this.cartPage.proceedToCheckout();
 });
