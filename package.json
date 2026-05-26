@@ -14,7 +14,8 @@
     "report:open": "allure open allure-report",
     "test:allure:qa": "cross-env AMBIENTE=qa npm-run-all --continue-on-error --sequential test:qa report:generate report:open",
     "test:allure:dev": "cross-env AMBIENTE=dev npm-run-all --continue-on-error --sequential test:dev report:generate report:open",
-    "test:allure:prod": "cross-env AMBIENTE=prod npm-run-all --continue-on-error --sequential test:prod report:generate report:open"
+    "test:allure:prod": "cross-env AMBIENTE=prod npm-run-all --continue-on-error --sequential test:prod report:generate report:open",
+    "test:ci:qa": "cross-env AMBIENTE=qa npm-run-all --continue-on-error --sequential test:qa report:generate"
   },
   "keywords": [
     "playwright",

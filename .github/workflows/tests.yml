@@ -33,7 +33,7 @@ jobs:
         run: apt-get update && apt-get install -y default-jre
           
       - name: Execute QA Automation Suite
-        run: npm run test:allure:qa
+        run: npm run test:ci:qa
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v4
