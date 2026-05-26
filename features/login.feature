@@ -14,7 +14,7 @@ Feature: Autenticación de usuarios en SauceDemo
   Scenario: Login fallido con usuario bloqueado
     Given que estoy en la página de inicio de sesión de SauceDemo
     When ingreso mis credenciales con el usuario "locked_out_user"
-    Then debo ver un mensaje de error "Epic sadface: Sorry, this user has been locked out."
+    Then debo ver un mensaje de error "Epic sadface: Sorry, this user has been locked out. DEMO test fallido"
 
   @regression @negative @data_driven @severity:minor
   Scenario Outline: Inicios de sesión fallidos con múltiples validaciones
