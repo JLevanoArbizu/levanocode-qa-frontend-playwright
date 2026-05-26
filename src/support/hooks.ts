@@ -25,12 +25,14 @@ After(async function (this: CustomWorld, scenario) {
     const screenshotName = scenario.pickle.name.replace(/[^a-zA-Z0-9]/g, '_');
     const screenshotPath = path.join(screenshotsDir, `${screenshotName}_failed.png`);
     
-    const screenshot = await this.page.screenshot({
-      path: screenshotPath,
-      fullPage: true
-    });
-    
-    this.attach(screenshot, 'image/png');
+    if (this.page) {
+      const screenshot = await this.page.screenshot({
+        path: screenshotPath,
+        fullPage: true
+      });
+      
+      this.attach(screenshot, 'image/png');
+    }
   }
   
   await this.cleanup();
