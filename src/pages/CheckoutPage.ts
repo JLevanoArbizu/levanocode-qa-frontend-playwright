@@ -1,6 +1,15 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
 
+const SELECTORS = {
+  firstName:      '[data-test="firstName"]',
+  lastName:       '[data-test="lastName"]',
+  postalCode:     '[data-test="postalCode"]',
+  continueBtn:    '[data-test="continue"]',
+  finishBtn:      '[data-test="finish"]',
+  completeHeader: '.complete-header'
+};
+
 export class CheckoutPage extends BasePage {
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
@@ -11,12 +20,12 @@ export class CheckoutPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.firstNameInput = page.locator('[data-test="firstName"]');
-    this.lastNameInput = page.locator('[data-test="lastName"]');
-    this.postalCodeInput = page.locator('[data-test="postalCode"]');
-    this.continueButton = page.locator('[data-test="continue"]');
-    this.finishButton = page.locator('[data-test="finish"]');
-    this.completeHeader = page.locator('.complete-header');
+    this.firstNameInput  = page.locator(SELECTORS.firstName);
+    this.lastNameInput   = page.locator(SELECTORS.lastName);
+    this.postalCodeInput = page.locator(SELECTORS.postalCode);
+    this.continueButton  = page.locator(SELECTORS.continueBtn);
+    this.finishButton    = page.locator(SELECTORS.finishBtn);
+    this.completeHeader  = page.locator(SELECTORS.completeHeader);
   }
 
   async fillShippingInfo(firstName: string, lastName: string, postalCode: string) {
