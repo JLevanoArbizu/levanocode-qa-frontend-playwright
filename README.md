@@ -3,15 +3,16 @@
 ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
 ![Cucumber](https://img.shields.io/badge/Cucumber-239120?style=for-the-badge&logo=cucumber&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Allure Report](https://img.shields.io/badge/Allure_Report-F75C29?style=for-the-badge&logo=allure&logoColor=white)
 
-Este repositorio contiene la resolución del reto de automatización End-to-End (E2E) para la aplicación web [Sauce Demo](https://www.saucedemo.com/), desarrollado con **Playwright**, **Cucumber (BDD)** y **TypeScript**.
+Este repositorio contiene una solución empresarial y de alto rendimiento para la automatización de pruebas End-to-End (E2E) en la plataforma web [Sauce Demo](https://www.saucedemo.com/). El framework está desarrollado utilizando **Playwright**, **Cucumber (BDD)**, **TypeScript** y un pipeline robusto de **CI/CD con GitHub Actions + GitHub Pages**.
 
 ---
 
-##  1. Instrucciones de Configuración
+## 🚀 1. Instrucciones de Configuración y Arranque
 
-Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema antes de comenzar.
+Asegúrate de tener [Node.js v20+](https://nodejs.org/) instalado en tu sistema antes de comenzar.
 
 1. **Clonar el repositorio**:
    ```bash
@@ -19,109 +20,155 @@ Asegúrate de tener [Node.js](https://nodejs.org/) instalado en tu sistema antes
    cd levanocode-qa-frontend-playwright
    ```
 
-2. **Instalar las dependencias del proyecto**:
+2. **Instalar las dependencias de forma limpia**:
    ```bash
-   npm install
+   npm ci
    ```
 
-3. **Instalar los navegadores necesarios para Playwright**:
+3. **Descargar e instalar los navegadores de Playwright**:
    ```bash
-   npx playwright install
+   npx playwright install chromium
    ```
 
----
+4. **Configurar Credenciales Locales**:
+   Crea tus archivos de credenciales basados en las plantillas de ejemplo. Duplica el archivo `config/env/.env.example` y renómbralo como:
+   *   `config/env/.env.qa` (Entorno de pruebas QA)
+   *   `config/env/.env.prod` (Entorno de Producción)
 
-##  2. Ejecución de Pruebas
-
-El framework está preparado para ejecutarse bajo diferentes ambientes y mediante filtros de etiquetas (Tags) configurados en los archivos Gherkin.
-
-### Ejecución General y Multi-Ambiente
-Las pruebas leen dinámicamente la URL desde `data/config.json`. Puedes controlar el ambiente usando la variable de entorno `ENV` (Ejemplos para Windows PowerShell):
-
-* **Ejecutar suite completa en QA (Por Defecto)**:
-  ```powershell
-  $env:ENV="qa"; npm run test:html
-  ```
-  *(O simplemente ejecuta `npm run test:html` en la terminal).*
-
-* **Ejecutar en otros ambientes**:
-  ```powershell
-  $env:ENV="dev"; npm run test:html
-  $env:ENV="prod"; npm run test:html
-  ```
-
-### Ejecución Filtrada por Etiquetas (Tags)
-Para apuntar a funcionalidades o flujos específicos:
-
-* **Happy Path / Flujo principal (`@smoke`)**:
-  ```powershell
-  npm run test:html -- --tags "@smoke"
-  ```
-* **Validaciones de errores y bloqueos (`@negative`)**:
-  ```powershell
-  npm run test:html -- --tags "@negative"
-  ```
-* **Módulo de Autenticación (`@login`)**:
-  ```powershell
-  npm run test:html -- --tags "@login"
-  ```
-* **Flujo completo de Compra E2E (`@compra` o `@e2e`)**:
-  ```powershell
-  npm run test:html -- --tags "@compra"
-  ```
+   *Nota: Estos archivos están excluidos de Git en `.gitignore` para proteger la seguridad del framework.*
 
 ---
 
-##  3. Reportes y Evidencias
+## 🎭 2. Guía de Ejecución de Pruebas en Local
 
-Al ejecutar cualquier prueba con el comando `npm run test:html`, se autogenerará un reporte detallado.
+El framework está optimizado para correr de forma híbrida: **Headed (con ventana visible) y ralentizado (SlowMo: 300ms) en local** para facilitar la depuración, y **Headless (silencioso) en la nube** para velocidad en CI/CD.
 
-* **Ubicación**: `reports/cucumber-report.html`
-* **Contenido**: Abre el archivo `.html` en cualquier navegador web para visualizar la ejecución paso a paso, los tiempos de respuesta y las **capturas de pantalla de auditoría visual** embebidas automáticamente en el reporte.
+### A. Ejecución Rápida (Consola - Fast Feedback)
+Ideal para ejecuciones ágiles en segundo plano mientras escribes código:
+*   **Ejecutar en QA:**
+    ```bash
+    npm run test:qa
+    ```
+*   **Ejecutar en Desarrollo (DEV):**
+    ```bash
+    npm run test:dev
+    ```
+*   **Ejecutar en Producción (PROD):**
+    ```bash
+    npm run test:prod
+    ```
+
+### B. Ejecución Completa (Pruebas + Allure Dashboard + Servidor Web)
+Este comando corre tus escenarios, inyecta metadatos del sistema operativo/navegador, unifica la tendencia histórica y **abre automáticamente una pestaña en tu navegador** con el tablero interactivo de Allure:
+*   **Ejecutar en QA con Dashboard:**
+    ```bash
+    npm run test:allure:qa
+    ```
+*   **Ejecutar en DEV con Dashboard:**
+    ```bash
+    npm run test:allure:dev
+    ```
+*   **Ejecutar en PROD con Dashboard:**
+    ```bash
+    npm run test:allure:prod
+    ```
+
+### C. Ejecución Avanzada Filtrada por Etiquetas (Tags)
+Cucumber te permite filtrar escenarios dinámicamente usando el separador `--` por consola. Esto funciona con cualquiera de los comandos anteriores:
+*   **Correr solo pruebas de humo (`@smoke`) en QA:**
+    ```bash
+    npm run test:qa -- --tags "@smoke"
+    ```
+*   **Correr solo la suite de regresión (`@regression`) en DEV:**
+    ```bash
+    npm run test:dev -- --tags "@regression"
+    ```
+*   **Correr un flujo específico (ej. `@compra`) con reporte Allure:**
+    ```bash
+    npm run test:allure:qa -- --tags "@compra"
+    ```
+*   **Excluir un tag específico (ej. omitir pruebas fallidas temporales):**
+    ```bash
+    npm run test:qa -- --tags "not @failing"
+    ```
 
 ---
 
-##  4. Cobertura del Reto y Criterios de Aceptación
+## 📊 3. Estrategia Híbrida de Reportabilidad y Evidencias
 
-El framework ha sido diseñado para cumplir con la historia de usuario principal:
-> *Como un cliente de Sauce Demo, quiero poder iniciar sesión, agregar productos al carrito y completar una compra para poder adquirir los productos que necesito.*
+El framework implementa dos motores de reporte para cubrir todas las audiencias (QA, Devs y Stakeholders):
 
-Se han automatizado y validado los siguientes escenarios:
-- [x] El usuario puede iniciar sesión con credenciales válidas (`standard_user`).
-- [x] El usuario no puede iniciar sesión con credenciales inválidas o bloqueadas (`locked_out_user`).
-- [x] El usuario puede agregar un producto al carrito desde la página de productos.
-- [x] El usuario puede ver los productos agregados en el carrito de compras.
-- [x] El usuario puede completar el proceso de compra hasta la confirmación final.
+### A. Cucumber HTML Report (Local / Feedback Técnico)
+*   **Ubicación:** `reports/cucumber-report.html`
+*   **Uso:** Un reporte jerárquico muy ligero de una sola página. Muestra los pasos Gherkin ejecutados y adjunta de forma interactiva las **capturas de pantalla tomadas automáticamente únicamente ante fallos**.
 
----
-
-##  5. Informe de Estrategia de Automatización y Patrones
-
-El framework está construido bajo principios modernos de desarrollo de software en pruebas (SDET), enfocándose en la escalabilidad y el mantenimiento:
-
-1. **Page Object Model (POM)**: Aplicación central de este patrón de diseño para encapsular localizadores y acciones de la UI en clases específicas. Esto garantiza que cualquier cambio en la interfaz de Sauce Demo solo requiera una actualización en un único lugar del código.
-2. **Behavior-Driven Development (BDD)**: Uso de Gherkin para redactar *Feature files* en un lenguaje ubicuo, separando la lógica de negocio de la implementación técnica mediante *Step Definitions*.
-3. **Data-Driven Testing (DDT)**: Separación total de los datos de prueba. Las credenciales (`standard_user`, `locked_out_user`, etc.) residen en `data/users.json`, mientras que las URLs de ambiente están en `data/config.json`.
-4. **Escenarios Dinámicos y Reusables**: Implementación de `Scenario Outlines` parametrizados, permitiendo evaluar múltiples caminos felices y tristes maximizando la reutilización de código.
-5. **Observabilidad y Manejo de Fallos**: Integración de hooks (`AfterStep` y `After`) para la toma de capturas de pantalla automáticas en cada paso y recolección de evidencias estructuradas en caso de fallos.
+### B. Allure Report Dashboard (Ejecutivo / Trazabilidad Cloud)
+*   **Ubicación Local:** `allure-report/index.html` (Servido mediante `npm run report:open`)
+*   **Ubicación Cloud (GitHub Pages):** Desplegado automáticamente a la web pública del repositorio tras cada ejecución.
+*   **Características Premium configuradas:**
+    *   **Trend Widget:** Muestra la línea de tendencia histórica de éxitos y fallos en tus últimos builds.
+    *   **Environment Metadata:** Muestra dinámicamente el SO, la versión de Node y el navegador en el que corrió la prueba.
+    *   **Severity Tagging:** Clasifica tus escenarios por severidad (`@severity:blocker`, `@severity:minor`, etc.).
+    *   **Inline Screenshots:** Capturas a pantalla completa embebidas directamente en el paso que causó el error.
 
 ---
 
-##  6. Estructura del Proyecto
+## ☁️ 4. Pipeline de CI/CD en GitHub Actions
+
+El archivo `.github/workflows/tests.yml` automatiza la ejecución ante cada `push`, `pull_request` o mediante **disparador manual (workflow_dispatch)**:
+
+1.  **Contenedor Oficial de Playwright:** El pipeline corre en `mcr.microsoft.com/playwright:v1.60.0-jammy` garantizando consistencia absoluta del sistema operativo.
+2.  **Seguridad Extrema (GitHub Secrets):** Las variables sensibles (`BASE_URL`, `SAUCE_USERNAME`, `SAUCE_PASSWORD`) se inyectan dinámicamente de forma encriptada en la nube.
+3.  **Preservación de Historial (Trend):** El pipeline descarga dinámicamente la carpeta `history/` de la rama `gh-pages` antes de compilar el nuevo reporte Allure.
+4.  **Autopublicación en GitHub Pages:** Sube de manera autónoma los resultados estáticos de Allure a la rama `gh-pages`, actualizando el link web público del reporte al instante.
+
+---
+
+## 🏛️ 5. Patrones de Diseño e Ingeniería de Calidad
+
+*   **Page Object Model (POM):** Arquitectura limpia basada en una clase `BasePage.ts` que encapsula esperas dinámicas y acciones comunes, heredada por las páginas específicas (`LoginPage`, `InventoryPage`, etc.).
+*   **World Pattern:** Aislamiento total de los contextos de navegación (`BrowserContext`) entre escenarios, preparando el framework para ejecuciones paralelas masivas sin fuga de memoria.
+*   **Smart Evidences:** El gancho `After` en `hooks.ts` evalúa el resultado de la prueba. Toma fotos pesadas **exclusivamente si el escenario falló**, manteniendo el framework ligero y optimizado.
+
+---
+
+## 📁 6. Estructura Completa del Proyecto
 
 ```text
-/
-├── data/                    # Fuentes de Datos (DDT)
-│   ├── config.json          # URLs de los ambientes (dev, qa, prod)
-│   └── users.json           # Credenciales y perfiles de prueba
-├── features/                # Escenarios de prueba escritos en Gherkin (.feature)
+Playwright/
+├── .github/workflows/
+│   └── tests.yml              # Pipeline de CI/CD (GitHub Actions)
+├── allure-report/                 # [GENERADO/IGNORADO] Reporte web interactivo final listo para visualizar.
+├── allure-results/                # [TEMPORAL/IGNORADO] Archivos JSON crudos y fotos de la última ejecución.
+├── config/env/
+│   ├── .env.example           # Plantilla/Guía de ejemplo para credenciales locales.
+│   ├── .env.qa                # Variables de entorno exclusivas para QA (Ignorado en Git).
+│   └── .env.prod              # Variables de entorno exclusivas para Producción (Ignorado en Git).
+├── docs/
+│   ├── plan_mejoras_fases_completo.md # Hoja de ruta y roadmap de mejoras del framework.
+│   └── resumen_arquitectura_proyecto.md # Resumen técnico detallado de la arquitectura.
+├── features/
+│   ├── compra.feature             # Escenario Gherkin E2E de compra completa y Checkout.
+│   └── login.feature              # Escenarios Gherkin de Autenticación (Happy Path, bloqueos y DDT).
+├── reports/
+│   ├── cucumber-report.html       # [GENERADO] Reporte técnico nativo de Cucumber en formato HTML.
+│   └── screenshots/               # Almacena evidencias visuales en formato PNG (Solo ante fallos).
+├── scripts/
+│   └── allure-metadata.js         # Inyecta dinámicamente sistema operativo, Node y navegador en Allure.
 ├── src/
-│   ├── pages/               # Clases Page Object Model (POM)
-│   ├── steps/               # Definiciones de pasos (Step Definitions) en TypeScript
-│   └── support/             # Configuración del framework (hooks y Custom World)
-├── reports/                 # Resultados de ejecución (Reportes HTML y Capturas)
-├── cucumber.js              # Configuración base del test runner de Cucumber
-├── package.json             # Dependencias del ecosistema Node
-├── playwright.config.ts     # Configuración base para navegadores de Playwright
-└── tsconfig.json            # Configuración para la compilación de TypeScript
+│   ├── pages/                     # Capa de Interacción (POM)
+│   │   ├── BasePage.ts            # Clase padre con métodos, esperas y aserciones comunes.
+│   │   ├── LoginPage.ts           # Interacciones de la interfaz de inicio de sesión.
+│   │   ├── InventoryPage.ts       # Acciones dentro del catálogo de productos.
+│   │   ├── CartPage.ts            # Validaciones del listado de compras en el carrito.
+│   │   └── CheckoutPage.ts        # Acciones para rellenar datos y finalizar transacciones.
+│   ├── steps/                     # Capa de Enlace (Gherkin -> TS)
+│   │   ├── compra.steps.ts
+│   │   └── login.steps.ts
+│   └── support/                   # Ciclo de Vida y Configuración del framework
+│       ├── hooks.ts               # Setup, carga dinámica de .env y captura en fallo.
+│       └── world.ts               # World Pattern para el aislamiento dinámico de contextos.
+├── cucumber.js                    # Archivo de configuración global de CucumberJS.
+├── package.json                   # Scripts NPM y gestión de dependencias del framework.
+└── tsconfig.json                  # Configuración estricta de compilación de TypeScript.
 ```
