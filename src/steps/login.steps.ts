@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { CustomWorld } from '../support/world';
-import * as usersData from '../../data/users.json';
+import * as usersData from '../../config/data/users.json';
 
 Given('que estoy en la página de inicio de sesión de SauceDemo', async function (this: CustomWorld) {
   await this.loginPage.navigate();
@@ -10,12 +10,7 @@ Given('que estoy en la página de inicio de sesión de SauceDemo', async functio
 When('ingreso mis credenciales con el usuario {string}', async function (this: CustomWorld, userType: string) {
   const users: any = usersData;
   const user = users[userType];
-  await this.loginPage.usernameInput.fill(user.username);
-  await this.loginPage.passwordInput.fill(user.password);
-});
-
-When('hago clic en el botón de login', async function (this: CustomWorld) {
-  await this.loginPage.loginButton.click();
+  await this.loginPage.login(user.username, user.password);
 });
 
 Then('debo ser redirigido a la página de inventario', async function (this: CustomWorld) {

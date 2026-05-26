@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { CustomWorld } from '../support/world';
-import * as usersData from '../../data/users.json';
+import * as usersData from '../../config/data/users.json';
 
 Given('inicio sesión exitosamente con {string}', async function (this: CustomWorld, userType: string) {
   const users: any = usersData;

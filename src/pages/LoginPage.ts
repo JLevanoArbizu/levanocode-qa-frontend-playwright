@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import * as configData from '../../data/config.json';
+import * as configData from '../../config/data/config.json';
 
 export class LoginPage {
   readonly page: Page;

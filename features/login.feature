@@ -8,21 +8,18 @@ Feature: Autenticación de usuarios en SauceDemo
   Scenario: Login exitoso con usuario estándar
     Given que estoy en la página de inicio de sesión de SauceDemo
     When ingreso mis credenciales con el usuario "standard_user"
-    And hago clic en el botón de login
     Then debo ser redirigido a la página de inventario
 
   @regression @negative
   Scenario: Login fallido con usuario bloqueado
     Given que estoy en la página de inicio de sesión de SauceDemo
     When ingreso mis credenciales con el usuario "locked_out_user"
-    And hago clic en el botón de login
     Then debo ver un mensaje de error "Epic sadface: Sorry, this user has been locked out."
 
   @regression @negative @data_driven
   Scenario Outline: Inicios de sesión fallidos con múltiples validaciones
     Given que estoy en la página de inicio de sesión de SauceDemo
     When ingreso mis credenciales con el usuario "<usuario>"
-    And hago clic en el botón de login
     Then debo ver un mensaje de error "<mensaje_esperado>"
 
     Examples:
