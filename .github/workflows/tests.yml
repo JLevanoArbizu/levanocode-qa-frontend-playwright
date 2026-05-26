@@ -1,0 +1,43 @@
+name: E2E Playwright Automation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Nightly run a la medianoche (UTC) todos los días
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # Permite disparar la ejecución manualmente desde GitHub
+
+jobs:
+  test-e2e:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.44.1-jammy
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Dependencies
+        run: npm ci
+          
+      - name: Execute QA Automation Suite
+        run: npm run test:allure:qa
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-test-reports
+          path: |
+            allure-report/
+            reports/
+          retention-days: 15
