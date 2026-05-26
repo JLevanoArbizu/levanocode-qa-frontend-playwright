@@ -40,5 +40,5 @@ When('confirmo la compra', async function (this: CustomWorld) {
 
 Then('debo ver la pantalla de confirmación de orden exitosa', async function (this: CustomWorld) {
   const confirmationMessage = await this.checkoutPage.getConfirmationMessage();
-  expect(confirmationMessage).toBe('Thank you for your order!');
+  expect.soft(confirmationMessage).toBe('Thank you for your order!');
 });

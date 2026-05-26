@@ -15,7 +15,7 @@ export class LoginPage {
     this.errorMessage = page.locator('[data-test="error"]');
   }
 
-async navigate() {
+  async navigate() {
     const urlBase = process.env.BASE_URL as string;
     await this.page.goto(urlBase);
   }

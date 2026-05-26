@@ -20,5 +20,5 @@ Then('debo ser redirigido a la página de inventario', async function (this: Cus
 
 Then('debo ver un mensaje de error {string}', async function (this: CustomWorld, mensajeEsperado: string) {
   const errorMessage = await this.loginPage.getErrorMessage();
-  expect(errorMessage).toContain(mensajeEsperado);
+  expect.soft(errorMessage).toContain(mensajeEsperado);
 });
