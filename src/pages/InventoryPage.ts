@@ -1,27 +1,27 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class InventoryPage {
-  readonly page: Page;
+export class InventoryPage extends BasePage {
   readonly title: Locator;
   readonly shoppingCartIcon: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.title = page.locator('.title');
     this.shoppingCartIcon = page.locator('.shopping_cart_link');
   }
 
   async isLoaded(): Promise<boolean> {
-    return await this.title.isVisible();
+    return await this.isElementVisible(this.title);
   }
 
   async addProductToCart(productName: string) {
     const formattedName = productName.toLowerCase().replace(/ /g, '-');
     const addToCartButton = this.page.locator(`[data-test="add-to-cart-${formattedName}"]`);
-    await addToCartButton.click();
+    await this.clickElement(addToCartButton);
   }
 
   async goToCart() {
-    await this.shoppingCartIcon.click();
+    await this.clickElement(this.shoppingCartIcon);
   }
 }

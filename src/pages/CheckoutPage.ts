@@ -1,7 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class CheckoutPage {
-  readonly page: Page;
+export class CheckoutPage extends BasePage {
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
@@ -10,7 +10,7 @@ export class CheckoutPage {
   readonly completeHeader: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.firstNameInput = page.locator('[data-test="firstName"]');
     this.lastNameInput = page.locator('[data-test="lastName"]');
     this.postalCodeInput = page.locator('[data-test="postalCode"]');
@@ -20,20 +20,22 @@ export class CheckoutPage {
   }
 
   async fillShippingInfo(firstName: string, lastName: string, postalCode: string) {
-    await this.firstNameInput.fill(firstName);
-    await this.lastNameInput.fill(lastName);
-    await this.postalCodeInput.fill(postalCode);
+    await this.fillText(this.firstNameInput, firstName);
+    await this.fillText(this.lastNameInput, lastName);
+    await this.fillText(this.postalCodeInput, postalCode);
   }
 
   async continueToOverview() {
-    await this.continueButton.click();
+    await this.clickElement(this.continueButton);
+    await this.page.waitForTimeout(1000);
+
   }
 
   async finishCheckout() {
-    await this.finishButton.click();
+    await this.clickElement(this.finishButton);
   }
 
   async getConfirmationMessage(): Promise<string> {
-    return await this.completeHeader.innerText();
+    return await this.getElementText(this.completeHeader);
   }
 }
