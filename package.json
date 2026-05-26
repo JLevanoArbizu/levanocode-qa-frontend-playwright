@@ -6,9 +6,15 @@
   "scripts": {
     "test": "cucumber-js test",
     "test:html": "cucumber-js test --format html:reports/cucumber-report.html",
-    "test:qa": "cross-env AMBIENTE=qa cucumber-js test --format html:reports/cucumber-report.html",
-    "test:dev": "cross-env AMBIENTE=dev cucumber-js test --format html:reports/cucumber-report.html",
-    "test:prod": "cross-env AMBIENTE=prod cucumber-js test --format html:reports/cucumber-report.html"
+    "test:qa": "cross-env AMBIENTE=qa cucumber-js",
+    "test:dev": "cross-env AMBIENTE=dev cucumber-js",
+    "test:prod": "cross-env AMBIENTE=prod cucumber-js",
+    "report:env": "node scripts/allure-metadata.js",
+    "report:generate": "npm run report:env && allure generate allure-results --clean -o allure-report",
+    "report:open": "allure open allure-report",
+    "test:allure:qa": "cross-env AMBIENTE=qa npm-run-all --continue-on-error --sequential test:qa report:generate report:open",
+    "test:allure:dev": "cross-env AMBIENTE=dev npm-run-all --continue-on-error --sequential test:dev report:generate report:open",
+    "test:allure:prod": "cross-env AMBIENTE=prod npm-run-all --continue-on-error --sequential test:prod report:generate report:open"
   },
   "keywords": [
     "playwright",
@@ -22,6 +28,10 @@
     "@cucumber/cucumber": "^10.8.0",
     "@playwright/test": "^1.44.1",
     "@types/node": "^20.12.12",
+    "allure-commandline": "^2.41.0",
+    "allure-cucumberjs": "^3.9.0",
+    "cross-env": "^10.1.0",
+    "npm-run-all": "^4.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

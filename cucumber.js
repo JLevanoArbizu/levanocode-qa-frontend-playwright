@@ -1,8 +1,6 @@
 module.exports = {
   default: {
-    formatOptions: {
-      snippetInterface: 'async-await'
-    },
+
     paths: [
       'features/**/*.feature'
     ],
@@ -16,8 +14,19 @@ module.exports = {
     format: [
       'progress-bar',
       'html:reports/cucumber-report.html',
-      'json:reports/cucumber-report.json'
+      'json:reports/cucumber-report.json',
+      'allure-cucumberjs/reporter'
     ],
+    formatOptions: {
+      snippetInterface: 'async-await',
+      resultsDir: 'allure-results',
+      labels: [
+        {
+          name: "severity",
+          pattern: [/@severity:(.*)/]
+        }
+      ]
+    },
     publishQuiet: true
   }
 };

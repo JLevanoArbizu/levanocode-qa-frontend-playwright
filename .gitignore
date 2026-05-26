@@ -13,6 +13,8 @@ reports/
 playwright-report/
 test-results/
 blob-report/
+allure-report/
+allure-results/
 
 # ==========================================
 # ENTORNOS Y SECRETOS

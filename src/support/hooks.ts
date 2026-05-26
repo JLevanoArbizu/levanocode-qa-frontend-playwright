@@ -36,8 +36,9 @@ After(async function (this: CustomWorld, scenario) {
   await this.cleanup();
 });
 
-
+/*
 AfterStep(async function (this: CustomWorld, step) {
     const screenshot = await this.page.screenshot();
     this.attach(screenshot, 'image/png');
 });
+*/
