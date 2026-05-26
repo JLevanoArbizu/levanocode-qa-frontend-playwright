@@ -1,5 +1,4 @@
 import { Page, Locator } from '@playwright/test';
-import * as configData from '../../config/data/config.json';
 
 export class LoginPage {
   readonly page: Page;
@@ -16,10 +15,9 @@ export class LoginPage {
     this.errorMessage = page.locator('[data-test="error"]');
   }
 
-  async navigate() {
-    const env = (process.env.ENV || 'qa') as keyof typeof configData;
-    const url = configData[env] || 'https://www.saucedemo.com/';
-    await this.page.goto(url);
+async navigate() {
+    const urlBase = process.env.BASE_URL as string;
+    await this.page.goto(urlBase);
   }
 
   async login(username: string, password: string) {
