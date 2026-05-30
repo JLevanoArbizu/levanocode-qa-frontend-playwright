@@ -1,19 +1,19 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","469","Inicios de sesión fallidos con múltiples validaciones","","2026-05-29","passed","2026-05-29","","","",""
+  Para acceder al inventario de productos","410","Inicios de sesión fallidos con múltiples validaciones","","2026-05-30","passed","2026-05-30","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","476","Login exitoso con usuario estándar","","2026-05-29","passed","2026-05-29","","","",""
+  Para acceder al inventario de productos","437","Inicios de sesión fallidos con múltiples validaciones","","2026-05-30","passed","2026-05-30","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","516","Inicios de sesión fallidos con múltiples validaciones","","2026-05-29","passed","2026-05-29","","","",""
+  Para acceder al inventario de productos","419","Inicios de sesión fallidos con múltiples validaciones","","2026-05-30","passed","2026-05-30","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","498","Inicios de sesión fallidos con múltiples validaciones","","2026-05-29","passed","2026-05-29","","","",""
+  Para acceder al inventario de productos","455","Login exitoso con usuario estándar","","2026-05-30","passed","2026-05-30","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","425","Login fallido con usuario bloqueado","","2026-05-29","passed","2026-05-29","","","",""
+  Para acceder al inventario de productos","416","Login fallido con usuario bloqueado","","2026-05-30","passed","2026-05-30","","","",""
 "Como cliente autenticado
   Quiero agregar productos al carrito y completar la compra
-  Para adquirir los productos deseados","2016","Flujo E2E - Agregar producto y completar compra","","2026-05-29","passed","2026-05-29","","","",""
+  Para adquirir los productos deseados","2038","Flujo E2E - Agregar producto y completar compra","","2026-05-30","passed","2026-05-30","","","",""
