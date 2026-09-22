@@ -1,19 +1,19 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","600","Login exitoso con usuario estándar","","2026-09-21","failed","2026-09-21","","","",""
-"Como usuario de SauceDemo
-  Quiero poder iniciar sesión
-  Para acceder al inventario de productos","456","Inicios de sesión fallidos con múltiples validaciones","","2026-09-21","passed","2026-09-21","","","",""
-"Como usuario de SauceDemo
-  Quiero poder iniciar sesión
-  Para acceder al inventario de productos","455","Inicios de sesión fallidos con múltiples validaciones","","2026-09-21","passed","2026-09-21","","","",""
+  Para acceder al inventario de productos","549","Login fallido con usuario bloqueado","","2026-09-22","passed","2026-09-22","","","",""
 "Como cliente autenticado
   Quiero agregar productos al carrito y completar la compra
-  Para adquirir los productos deseados","846","Flujo E2E - Agregar producto y completar compra","","2026-09-21","failed","2026-09-21","","","",""
+  Para adquirir los productos deseados","969","Flujo E2E - Agregar producto y completar compra","","2026-09-22","failed","2026-09-22","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","475","Login fallido con usuario bloqueado","","2026-09-21","passed","2026-09-21","","","",""
+  Para acceder al inventario de productos","514","Inicios de sesión fallidos con múltiples validaciones","","2026-09-22","passed","2026-09-22","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","457","Inicios de sesión fallidos con múltiples validaciones","","2026-09-21","passed","2026-09-21","","","",""
+  Para acceder al inventario de productos","534","Inicios de sesión fallidos con múltiples validaciones","","2026-09-22","passed","2026-09-22","","","",""
+"Como usuario de SauceDemo
+  Quiero poder iniciar sesión
+  Para acceder al inventario de productos","684","Login exitoso con usuario estándar","","2026-09-22","failed","2026-09-22","","","",""
+"Como usuario de SauceDemo
+  Quiero poder iniciar sesión
+  Para acceder al inventario de productos","571","Inicios de sesión fallidos con múltiples validaciones","","2026-09-22","passed","2026-09-22","","","",""
