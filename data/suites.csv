@@ -1,19 +1,19 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
 "Como cliente autenticado
   Quiero agregar productos al carrito y completar la compra
-  Para adquirir los productos deseados","1106","Flujo E2E - Agregar producto y completar compra","","2026-11-03","failed","2026-11-03","","","",""
+  Para adquirir los productos deseados","849","Flujo E2E - Agregar producto y completar compra","","2026-11-04","failed","2026-11-04","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","504","Login exitoso con usuario estándar","","2026-11-03","failed","2026-11-03","","","",""
+  Para acceder al inventario de productos","398","Login fallido con usuario bloqueado","","2026-11-04","passed","2026-11-04","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","341","Inicios de sesión fallidos con múltiples validaciones","","2026-11-03","passed","2026-11-03","","","",""
+  Para acceder al inventario de productos","417","Inicios de sesión fallidos con múltiples validaciones","","2026-11-04","passed","2026-11-04","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","410","Inicios de sesión fallidos con múltiples validaciones","","2026-11-03","passed","2026-11-03","","","",""
+  Para acceder al inventario de productos","421","Inicios de sesión fallidos con múltiples validaciones","","2026-11-04","passed","2026-11-04","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","701","Inicios de sesión fallidos con múltiples validaciones","","2026-11-03","passed","2026-11-03","","","",""
+  Para acceder al inventario de productos","442","Login exitoso con usuario estándar","","2026-11-04","failed","2026-11-04","","","",""
 "Como usuario de SauceDemo
   Quiero poder iniciar sesión
-  Para acceder al inventario de productos","421","Login fallido con usuario bloqueado","","2026-11-03","passed","2026-11-03","","","",""
+  Para acceder al inventario de productos","424","Inicios de sesión fallidos con múltiples validaciones","","2026-11-04","passed","2026-11-04","","","",""
